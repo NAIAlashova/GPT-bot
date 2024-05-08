@@ -8,7 +8,6 @@ from GPT import ask_gpt, count_tokens, to_speech, to_text
 bot = telebot.TeleBot(get_bot_token())
 logging.basicConfig(level=logging.DEBUG, filename='log.txt', format="%(asctime)s FILE: %(filename)s IN: %(funcName)s MESSAGE: %(message)s", filemode="w")
 execute_query(config.query1)
-
 def ask(text, message, type):
     ans = ask_gpt(text)
     tokens = count_tokens(ans)

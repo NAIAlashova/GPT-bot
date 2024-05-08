@@ -3,7 +3,6 @@ import logging
 from creds import get_creds
 
 logging.basicConfig(level=logging.DEBUG, filename='log.txt', format="%(asctime)s FILE: %(filename)s IN: %(funcName)s MESSAGE: %(message)s", filemode="w")
-
 def to_text(voice):
     iam_token, folder_id = get_creds()
     params = "&".join(["topic=general", f"folderId={folder_id}", "lang=ru-RU" ])

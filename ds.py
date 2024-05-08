@@ -1,5 +1,6 @@
 import sqlite3
 
+
 def execute_query(sql_query, data=None, db_path='db.sqlite'):
     con = sqlite3.connect(db_path)
     cur = con.cursor()
@@ -9,6 +10,7 @@ def execute_query(sql_query, data=None, db_path='db.sqlite'):
         cur.execute(sql_query)
     con.commit()
     con.close()
+
 def count_all_symbol(user_id, db_name="speech_kit.db"):
     try:
         with sqlite3.connect(db_name) as conn:
@@ -21,6 +23,7 @@ def count_all_symbol(user_id, db_name="speech_kit.db"):
                 return 0
     except Exception as e:
         print(f"Error: {e}")
+
 def count_all_blocks(user_id, db_name="speech_kit.db"):
     try:
         with sqlite3.connect(db_name) as conn:
@@ -33,3 +36,4 @@ def count_all_blocks(user_id, db_name="speech_kit.db"):
                 return 0
     except Exception as e:
         print(f"Error: {e}")
+
