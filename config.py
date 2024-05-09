@@ -1,4 +1,4 @@
-HOME_DIR = 'C:/pythonProject/FinalProject'
+HOME_DIR = '/home/student/GPT-bot'
 LOGS = f'{HOME_DIR}/log.txt'
 DB_FILE = f'{HOME_DIR}/messages.db'
 
