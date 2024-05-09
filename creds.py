@@ -5,7 +5,7 @@ from datetime import datetime
 import requests
 from config import LOGS, IAM_TOKEN_PATH, FOLDER_ID_PATH, BOT_TOKEN_PATH
 
-logging.basicConfig(filename=log, level=logging.INFO, format="%(asctime)s FILE: %(filename)s IN: %(funcName)s MESSAGE: %(message)s", filemode="w")
+logging.basicConfig(filename='log.txt', level=logging.INFO, format="%(asctime)s FILE: %(filename)s IN: %(funcName)s MESSAGE: %(message)s", filemode="w")
 def create_new_token():
     metadata_url = "http://169.254.169.254/computeMetadata/v1/instance/service-accounts/default/token"
     headers = {"Metadata-Flavor": "Google"}
