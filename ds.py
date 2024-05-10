@@ -11,7 +11,7 @@ def execute_query(sql_query, data=None, db_path='db.sqlite'):
     con.commit()
     con.close()
 
-def count_all_symbol(user_id, db_name="speech_kit.db"):
+def count_all_symbol(user_id, db_name="db.sqlite"):
     try:
         with sqlite3.connect(db_name) as conn:
             cursor = conn.cursor()
@@ -24,7 +24,7 @@ def count_all_symbol(user_id, db_name="speech_kit.db"):
     except Exception as e:
         print(f"Error: {e}")
 
-def count_all_blocks(user_id, db_name="speech_kit.db"):
+def count_all_blocks(user_id, db_name="db.sqlite"):
     try:
         with sqlite3.connect(db_name) as conn:
             cursor = conn.cursor()
