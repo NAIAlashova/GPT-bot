@@ -29,8 +29,7 @@ def get_creds():
     except:
         create_new_token()
     with open(IAM_TOKEN_PATH, 'r') as f:
-        file_data = json.load(f)
-        iam_token = file_data["access_token"]
+        iam_token = json.load(f)["access_token"]
     with open(FOLDER_ID_PATH, 'r') as f:
         folder_id = f.read().strip()
     return iam_token, folder_id
