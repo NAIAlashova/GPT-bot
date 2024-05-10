@@ -31,16 +31,19 @@ def right(message):
     else:
        pass
 def validators(message, type):
-    if type == 'текст':
-        if count_all_symbol(message.from_user.id) or count_all_symbol(message.from_user.id) > 5000:
-            return False
+    if count_all_symbol(message.from_user.id):
+        if type == 'текст':
+            if count_all_symbol(message.from_user.id) > 5000:
+                return False
+            else:
+                return True
         else:
-            return True
+            if count_all_blocks(message.from_user.id) > 120:
+                return False
+            else:
+                return True
     else:
-        if count_all_blocks(message.from_user.id) or  count_all_blocks(message.from_user.id) > 120:
-            return False
-        else:
-            return True
+        return False
 @bot.message_handler(commands=['start'])
 def handle_start(message):
     bot.send_message(message.chat.id, config.hi)
