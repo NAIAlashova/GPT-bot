@@ -131,4 +131,5 @@ def speech(message):
         logging.error(text)
         bot.send_message(message.chat.id, 'Произошла какая-то ошибка. Попробуй заново.')
 
-bot.infinity_polling()
+# bot.infinity_polling()
+bot.polling()
