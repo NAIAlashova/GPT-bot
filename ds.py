@@ -28,7 +28,7 @@ def count_all_blocks(user_id, db_name="db.sqlite"):
     try:
         with sqlite3.connect(db_name) as conn:
             cursor = conn.cursor()
-            cursor.execute('''SELECT SUM(bloсks) FROM messages WHERE (user_id=? AND bloсks<>tokens)''', (user_id,))
+            cursor.execute('''SELECT SUM(bloсks) FROM Requests WHERE (user_id=? AND bloсks<>tokens)''', (user_id,))
             data = cursor.fetchone()
             if data and data[0]:
                 return data[0]
