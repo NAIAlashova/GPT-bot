@@ -13,6 +13,7 @@ def create_new_token():
         response = requests.get(metadata_url, headers=headers)
         if response.status_code == 200:
             logging.info("Получен новый iam_token")
+            # Надо написать программу, перезаписывающую iam token в файл
             return response.json()
         else:
             logging.error(f"Ошибка получения iam_token. Статус-код: {response.status_code}")
@@ -21,8 +22,7 @@ def create_new_token():
 def get_creds():
     try:
         with open(IAM_TOKEN_PATH, 'r') as f:
-            file_data = json.load(f)
-            expiration = datetime.strptime(file_data["expires_at"][:26], "%Y-%m-%dT%H:%M:%S.%f")
+            expiration = datetime.strptime(json.load(f)["expires_at"][:26], "%Y-%m-%dT%H:%M:%S.%f")
         if expiration < datetime.now():
             logging.info("Срок годности iam_token истёк")
             create_new_token()

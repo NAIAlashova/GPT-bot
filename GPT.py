@@ -67,4 +67,4 @@ def count_tokens(text):
         "https://llm.api.cloud.yandex.net/foundationModels/v1/tokenize",
         json={"modelUri": f"gpt://{folder_id}/yandexgpt/latest", "text": text},
         headers=headers)
-    return len(len_tokens.json()['tokens'])
+    return len(len_tokens.json()['token'])
