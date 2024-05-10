@@ -26,7 +26,8 @@ def to_speech(text):
     if response.status_code == 200:
         return True, response.content
     else:
-        return False, response.status_code
+        logging.error('Произошла ошибка ' + str(response.status_code))
+        return False, ''
 
 def ask_gpt(collection):
     url = f"https://llm.api.cloud.yandex.net/foundationModels/v1/completion"

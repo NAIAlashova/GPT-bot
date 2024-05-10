@@ -78,7 +78,6 @@ def tts(message):
         execute_query(f'''INSERT INTO Requests VALUES ({message.from_user.id}, 'user', '{text}', {0}, {count_tokens(text)});''')
     else:
         bot.send_message(message.chat.id, 'Произошла какая-то ошибка. Попробуй заново.')
-        logging.error('Произошла ошибка ' + str(ans))
 @bot.message_handler(commands=['stt'])
 def stt_handler(message):
     user_id = message.from_user.id
