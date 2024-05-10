@@ -43,7 +43,7 @@ def validators(message, type):
             else:
                 return True
     else:
-        return False
+        return True
 @bot.message_handler(commands=['start'])
 def handle_start(message):
     bot.send_message(message.chat.id, config.hi)
