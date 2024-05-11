@@ -74,7 +74,7 @@ def tts(message):
     if p:
         with open("output.ogg", "wb") as audio:
             audio.write(ans)
-        bot.send_voise(message.chat.id, ans)
+        bot.send_voice(message.chat.id, ans)
         execute_query(f'''INSERT INTO Requests VALUES ({message.from_user.id}, 'user', '{text}', {0}, {count_tokens(text)});''')
     else:
         bot.send_message(message.chat.id, 'Произошла какая-то ошибка. Попробуй заново.')
@@ -124,7 +124,7 @@ def speech(message):
         if p:
             with open("output.ogg", "wb") as audio:
                 audio.write(ans)
-            bot.send_voise(message.chat.id, ans)
+            bot.send_voice(message.chat.id, ans)
             execute_query(f'''INSERT INTO Requests VALUES ({message.from_user.id}, 'user', '{text}', {token_ask}, {blok_ask});''')
         else:
             bot.send_message(message.chat.id, 'Произошла какая-то ошибка. Попробуй заново.')
