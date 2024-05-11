@@ -75,7 +75,7 @@ def tts(message):
         with open("output.ogg", "wb") as audio:
             audio.write(ans)
         bot.send_voice(message.chat.id, ans)
-        execute_query(f'''INSERT INTO Requests VALUES ({message.from_user.id}, 'user', '{text}', {0}, {count_tokens(text)});''')
+        execute_query(f'''INSERT INTO Requests VALUES ({message.from_user.id}, 'user', '{text}', {count_tokens(text)}, {0});''')
     else:
         bot.send_message(message.chat.id, 'Произошла какая-то ошибка. Попробуй заново.')
 @bot.message_handler(commands=['stt'])
