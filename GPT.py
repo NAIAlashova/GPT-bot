@@ -68,4 +68,4 @@ def count_tokens(text):
         json={"modelUri": f"gpt://{folder_id}/yandexgpt/latest", "text": text},
         headers=headers)
     print(len_tokens.json())
-    return len(len_tokens.json()['token'])
+    return len(len_tokens.json()['tokens'])
