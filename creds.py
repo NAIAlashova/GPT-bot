@@ -12,8 +12,11 @@ def create_new_token():
     try:
         response = requests.get(metadata_url, headers=headers)
         if response.status_code == 200:
+            token_data = response.json()
+            token_data['expires_at'] = time.time() + token_data['expires_in']
+            with open(IAM_TOKEN_PATH, "w") as token_file:
+                json.dump(token_data, token_file)
             logging.info("Получен новый iam_token")
-            # Надо написать программу, перезаписывающую iam token в файл
             return response.json()
         else:
             logging.error(f"Ошибка получения iam_token. Статус-код: {response.status_code}")
@@ -29,8 +32,7 @@ def get_creds():
     except:
         create_new_token()
     with open(IAM_TOKEN_PATH, 'r') as f:
-        # iam_token = json.load(f)["access_token"]
-        iam_token = f.read().strip()
+        iam_token = json.load(f)["access_token"]
     with open(FOLDER_ID_PATH, 'r') as f:
         folder_id = f.read().strip()
     return iam_token, folder_id
