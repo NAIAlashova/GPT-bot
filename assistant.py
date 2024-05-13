@@ -99,6 +99,7 @@ def stt(message):
     file_info = bot.get_file(file_id)
     file = bot.download_file(file_info.file_path)
     p, ans = to_text(file)
+    print(ans)
     if p:
         bot.send_voice(message.chat.id, ans)
         execute_query(f'''INSERT INTO Requests (user_id, role, contents, tokens, blocks) VALUES ({message.from_user.id}, 'user', '{ans}', {0}, {int(message.voice.duration/15)});''')
