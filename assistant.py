@@ -34,13 +34,16 @@ def right(message):
 def validators(message, type):
     if count_all_symbol(message.from_user.id):
         if type == 'текст':
-            if count_all_symbol(message.from_user.id) or count_all_symbol(message.from_user.id) > 5000:
+            if count_all_symbol(message.from_user.id) > 5000:
                 return False
             else:
                 return True
         else:
-            if  count_all_blocks(message.from_user.id) or count_all_blocks(message.from_user.id) > 120:
-                return False
+            if count_all_blocks(message.from_user.id):
+                if  count_all_blocks(message.from_user.id) > 120:
+                    return False
+                else:
+                    return True
             else:
                 return True
     else:
