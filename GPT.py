@@ -43,6 +43,7 @@ def ask_gpt(collection):
             "maxTokens": 200},
         "messages": []}
     for row in collection:
+        print(row)
         content = row['content']
         data["messages"].append({
             "role": 'user',
@@ -67,5 +68,4 @@ def count_tokens(text):
         "https://llm.api.cloud.yandex.net/foundationModels/v1/tokenize",
         json={"modelUri": f"gpt://{folder_id}/yandexgpt/latest", "text": text},
         headers=headers)
-    print(len_tokens.json())
     return len(len_tokens.json()['tokens'])
