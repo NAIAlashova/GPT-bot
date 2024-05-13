@@ -122,7 +122,10 @@ def speech(message):
         bot.send_message(message.chat.id, 'У вас закончились блоки для голосовых сообщений. Попробуйте написать текстом.')
         return
     blok_ask = int(message.voice.duration/15)
-    p, text = to_text(message.text)
+    file_id = message.voice.file_id
+    file_info = bot.get_file(file_id)
+    file = bot.download_file(file_info.file_path)
+    p, text = to_text(file)
     token_ask = count_tokens(text)
     if p:
         ans = ask(text, message, 'голос')
