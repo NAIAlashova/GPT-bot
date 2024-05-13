@@ -42,12 +42,9 @@ def ask_gpt(collection):
             "temperature": 0.6,
             "maxTokens": 200},
         "messages": []}
-    for row in collection:
-        print(row)
-        content = row['content']
-        data["messages"].append({
-            "role": 'user',
-            "text": content})
+    data["messages"].append({
+        "role": 'user',
+        "text": collection})
     try:
         response = requests.post(url, headers=headers, json=data)
         if response.status_code != 200:

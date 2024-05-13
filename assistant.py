@@ -108,7 +108,6 @@ def writing(message):
     blok_ask = 0
     token_ask = count_tokens(message.text)
     execute_query(f'''INSERT INTO Requests (user_id, role, contents, tokens, blocks) VALUES ({message.from_user.id}, 'user', '{message.text}', {token_ask}, {blok_ask}) ;''')
-    print(message.text)
     ans = ask(message.text, message, 'текст')
     bot.send_message(message.chat.id, ans)
 @bot.message_handler(content_types=['audio'])
