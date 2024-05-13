@@ -57,7 +57,7 @@ def handle_about(message):
 @bot.message_handler(commands=['logging'])
 def handle_logging(message):
     doc = open(config.LOGS, 'rb')
-    bot.send_document(message.chat.id, doc)
+    bot.send_text(message.chat.id, doc)
 @bot.message_handler(commands=['tts'])
 def tts_handler(message):
     user_id = message.from_user.id
