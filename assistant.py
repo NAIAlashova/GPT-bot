@@ -1,4 +1,5 @@
 import telebot
+import json
 import logging
 import config
 from creds import get_bot_token
@@ -55,7 +56,9 @@ def handle_about(message):
     bot.send_message(message.chat.id, config.about)
 @bot.message_handler(commands=['logging'])
 def handle_logging(message):
-    bot.send_document(message.chat.id, 'log.txt')
+    with open(config.LOGS, 'r') as f:
+        log = json.load(f)
+    bot.send_document(message.chat.id, log)
 @bot.message_handler(commands=['tts'])
 def tts_handler(message):
     user_id = message.from_user.id
