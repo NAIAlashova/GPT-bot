@@ -14,7 +14,7 @@ def ask(text, message, type):
     blocks = tokens
     if type == 'текст':
         blocks = 0
-    execute_query(f'''INSERT INTO Requests VALUES ({message.from_user.id}, 'assistent', '{message.text}', {tokens}, {blocks}) ;''')
+    execute_query(f'''INSERT INTO Requests (user_id, role, contents, tokens, blocks) VALUES ({message.from_user.id}, 'assistent', '{message.text}', {tokens}, {blocks}) ;''')
     return ans
 def right(message):
     if '/' in message.text:
@@ -75,7 +75,7 @@ def tts(message):
         with open("output.ogg", "wb") as audio:
             audio.write(ans)
         bot.send_voice(message.chat.id, ans)
-        execute_query(f'''INSERT INTO Requests VALUES ({message.from_user.id}, 'user', '{text}', {count_tokens(text)}, {0});''')
+        execute_query(f'''INSERT INTO Requests (user_id, role, contents, tokens, blocks) VALUES ({message.from_user.id}, 'user', '{text}', {count_tokens(text)}, {0});''')
     else:
         bot.send_message(message.chat.id, 'Произошла какая-то ошибка. Попробуй заново.')
 @bot.message_handler(commands=['stt'])
@@ -95,7 +95,7 @@ def stt(message):
     p, ans = to_text(file)
     if p:
         bot.send_voise(message.chat.id, ans)
-        execute_query(f'''INSERT INTO Requests VALUES ({message.from_user.id}, 'user', '{ans}', {0}, {int(message.voice.duration/15)});''')
+        execute_query(f'''INSERT INTO Requests (user_id, role, contents, tokens, blocks) VALUES ({message.from_user.id}, 'user', '{ans}', {0}, {int(message.voice.duration/15)});''')
     else:
         bot.send_message(message.chat.id, 'Произошла какая-то ошибка. Попробуй заново.')
         logging.error('Произошла ошибка ' + str(ans))
@@ -107,7 +107,7 @@ def writing(message):
         return
     blok_ask = 0
     token_ask = count_tokens(message.text)
-    execute_query(f'''INSERT INTO Requests VALUES ({message.from_user.id}, 'user', '{message.text}', {token_ask}, {blok_ask}) ;''')
+    execute_query(f'''INSERT INTO Requests (user_id, role, contents, tokens, blocks) VALUES ({message.from_user.id}, 'user', '{message.text}', {token_ask}, {blok_ask}) ;''')
     ans = ask(message.text, message, 'текст')
     bot.send_message(message.chat.id, ans)
 @bot.message_handler(content_types=['audio'])
@@ -125,7 +125,7 @@ def speech(message):
             with open("output.ogg", "wb") as audio:
                 audio.write(ans)
             bot.send_voice(message.chat.id, ans)
-            execute_query(f'''INSERT INTO Requests VALUES ({message.from_user.id}, 'user', '{text}', {token_ask}, {blok_ask});''')
+            execute_query(f'''INSERT INTO Requests (user_id, role, contents, tokens, blocks) VALUES ({message.from_user.id}, 'user', '{text}', {token_ask}, {blok_ask});''')
         else:
             bot.send_message(message.chat.id, 'Произошла какая-то ошибка. Попробуй заново.')
             logging.error('Произошла ошибка ' + ans)
