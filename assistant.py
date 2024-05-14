@@ -126,9 +126,11 @@ def speech(message):
     file_info = bot.get_file(file_id)
     file = bot.download_file(file_info.file_path)
     p, text = to_text(file)
+    print(text)
     token_ask = count_tokens(text)
     if p:
         ans = ask(text, message, 'голос')
+        print(ans)
         p, ans = to_speech(ans)
         if p:
             with open("output.ogg", "wb") as audio:
