@@ -116,7 +116,7 @@ def writing(message):
     execute_query(f'''INSERT INTO Requests (user_id, role, contents, tokens, blocks) VALUES ({message.from_user.id}, 'user', '{message.text}', {token_ask}, {blok_ask}) ;''')
     ans = ask(message.text, message, 'текст')
     bot.send_message(message.chat.id, ans)
-@bot.message_handler(content_types=['audio'])
+@bot.message_handler(content_types=['voice'])
 def speech(message):
     if not validators(message, 'голос'):
         bot.send_message(message.chat.id, 'У вас закончились блоки для голосовых сообщений. Попробуйте написать текстом.')
